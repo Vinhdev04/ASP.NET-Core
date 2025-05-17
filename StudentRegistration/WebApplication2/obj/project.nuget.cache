@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ezsIifPt5sg=",
+  "dgSpecHash": "Z3nKJrJu6U1BhJMilYAjdZw6hDTtLrUeTaZQcxPc2F/Tk/2oMbaxTvO4MGUNafQP02JSm3VS40JtJAJvZxxf1w==",
   "success": true,
-  "projectFilePath": "D:\\Workspace\\ASP.NET Core\\StudentRegistration\\WebApplication2\\WebApplication2.csproj",
+  "projectFilePath": "C:\\Users\\Administrator\\Desktop\\ASP.NET-Core\\StudentRegistration\\WebApplication2\\WebApplication2.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\M15 A\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.22.1-preview.1\\microsoft.visualstudio.azure.containers.tools.targets.1.22.1-preview.1.nupkg.sha512"
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.22.1-preview.1\\microsoft.visualstudio.azure.containers.tools.targets.1.22.1-preview.1.nupkg.sha512"
   ],
   "logs": []
 }

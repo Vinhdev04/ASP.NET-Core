@@ -1,0 +1,238 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    line-height: 1.6;
+}
+
+.header-bg {
+    background: linear-gradient(to bottom, #4a90e2, #63b8ff, #a3d8f4);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px 0;
+}
+
+.logo-font {
+    font-family: 'Pacifico', cursive;
+    font-size: 2.8rem;
+    font-weight: 400;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.slogan {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #fff;
+    margin-top: 5px;
+}
+
+.nav-bg {
+    background: linear-gradient(to right, #4a90e2, #63b8ff, #a3d8f4);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link {
+    font-weight: 500;
+    transition: color 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.nav-link:hover {
+    color: #e6f0fa !important;
+}
+
+.card {
+    min-height: 400px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+    background: #fff;
+}
+
+.card-title {
+    font-weight: 500;
+    font-size: 1.3rem;
+    color: #4a90e2;
+}
+
+.card-text {
+    color: #666;
+    font-size: 1rem;
+    flex-grow: 1;
+    margin-bottom: 10px;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+    font-weight: 500;
+    padding: 8px 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border-radius: 5px;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.sidebar {
+    background: linear-gradient(to bottom, #63b8ff, #a3d8f4);
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.sidebar h5 {
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.sidebar a:hover {
+    color: #e6f0fa;
+}
+
+.sidebar i {
+    margin-right: 10px;
+}
+
+.pagination .page-link {
+    background-color: #63b8ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 0 5px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination .page-link:hover {
+    background-color: #4a90e2;
+}
+
+.pagination .page-link.active {
+    background-color: #4a90e2;
+    font-weight: bold;
+}
+
+footer {
+    background: linear-gradient(to bottom, #63b8ff, #4a90e2);
+    color: white;
+    padding: 50px 0;
+    margin-top: 40px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+footer h5 {
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    color: #e6f0fa;
+}
+
+footer p,
+footer a {
+    color: #e0e0e0;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #e6f0fa;
+    text-decoration: underline;
+}
+
+footer hr {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .header-bg h1 {
+        font-size: 2rem;
+    }
+
+    .slogan {
+        font-size: 1rem;
+    }
+
+    .card {
+        min-height: 350px;
+    }
+
+    .card-img-top {
+        height: 180px;
+    }
+
+    .sidebar {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-bg h1 {
+        font-size: 1.8rem;
+    }
+
+    .slogan {
+        font-size: 0.9rem;
+    }
+
+    .card {
+        min-height: 320px;
+    }
+
+    .card-img-top {
+        height: 160px;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+    }
+
+    .card-text {
+        font-size: 0.95rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 6px 15px;
+    }
+
+    .sidebar a {
+        font-size: 1.1rem;
+    }
+}
