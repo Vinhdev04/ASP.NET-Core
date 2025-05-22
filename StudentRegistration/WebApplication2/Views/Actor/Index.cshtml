@@ -1,0 +1,13 @@
+@model IEnumerable<WebApplication2.Models.Actor>
+
+    <h2>Danh sách di?n viên</h2>
+    <ul>
+        @foreach (var actor in Model)
+{
+        <li>
+            <img src="@actor.PhotoUrl" alt="@actor.Name" width="100" />
+            <h3>@Html.ActionLink(actor.Name, "Details", new { id = actor.Id })</h3>
+            <p>@actor.Biography</p>
+        </li>
+}
+    </ul>
