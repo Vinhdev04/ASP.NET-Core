@@ -11,43 +11,52 @@
         <div class="col-md-6">
             <h2 class="mb-4 text-center">Đăng ký</h2>
 
-            @if (ViewBag.Success != null)
-            {
-                <div class="alert alert-success">@ViewBag.Success</div>
-            }
-
             @if (ViewBag.Failure != null)
             {
                 <div class="alert alert-danger">@ViewBag.Failure</div>
             }
 
-            <form asp-action="Register" method="post" novalidate>
-                <div class="mb-3">
-                    <label asp-for="Username" class="form-label"></label>
-                    <input asp-for="Username" class="form-control" />
-                    <span asp-validation-for="Username" class="text-danger"></span>
-                </div>
+            @if ((bool?)ViewBag.Registered != true)
+            {
+                <form asp-action="Register" method="post" novalidate>
+                    <div class="mb-3">
+                        <label asp-for="Username" class="form-label"></label>
+                        <input asp-for="Username" class="form-control" />
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
 
-                <div class="mb-3">
-                    <label asp-for="Email" class="form-label"></label>
-                    <input asp-for="Email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
 
-                <div class="mb-3">
-                    <label asp-for="Password" class="form-label"></label>
-                    <input asp-for="Password" class="form-control" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
 
-                <div class="mb-3">
-                    <label asp-for="ConfirmPass" class="form-label"></label>
-                    <input asp-for="ConfirmPass" class="form-control" />
-                    <span asp-validation-for="ConfirmPass" class="text-danger"></span>
-                </div>
+                    <div class="mb-3">
+                        <label asp-for="ConfirmPass" class="form-label"></label>
+                        <input asp-for="ConfirmPass" class="form-control" />
+                        <span asp-validation-for="ConfirmPass" class="text-danger"></span>
+                    </div>
 
-                <button type="submit" class="btn btn-primary w-100">Đăng ký</button>
-            </form>
+                    <button type="submit" class="btn btn-primary w-100">Đăng ký</button>
+                </form>
+            }
+            else
+            {
+                <div class="mt-4 alert alert-success">
+                    <h5>🎉 Đăng ký thành công!</h5>
+                    <ul class="mb-0">
+                        <li><strong>Tên đăng nhập:</strong> @Model.Username</li>
+                        <li><strong>Email:</strong> @Model.Email</li>
+                        <li><strong>Mật khẩu:</strong> ******</li>
+                    </ul>
+                </div>
+            }
         </div>
     </div>
 </div>

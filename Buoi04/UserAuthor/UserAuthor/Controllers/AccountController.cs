@@ -16,21 +16,11 @@ namespace UserAuthor.Controllers
         {
             if (ModelState.IsValid)
             {
-                ViewBag.Success = "Đăng ký thành công!";
-                ModelState.Clear();
-                return View();
+                ViewBag.Registered = true;
+                return View(user);
             }
 
-            // Debug: log ra lỗi (tùy chọn)
-            foreach (var modelState in ModelState)
-            {
-                foreach (var error in modelState.Value.Errors)
-                {
-                    Console.WriteLine($"Lỗi ở {modelState.Key}: {error.ErrorMessage}");
-                }
-            }
-
-            ViewBag.Failure = "Đăng ký thất bại. Vui lòng kiểm tra thông tin bạn nhập.";
+            ViewBag.Failure = "Đăng ký thất bại. Vui lòng kiểm tra thông tin bên dưới.";
             return View(user);
         }
     }

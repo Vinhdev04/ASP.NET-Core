@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Workspace\\BackEnd\\ASP.NET\\UserAuthor\\UserAuthor\\UserAuthor.csproj": {}
+    "D:\\Workspace\\ASP.NET Core\\Buoi04\\UserAuthor\\UserAuthor\\UserAuthor.csproj": {}
   },
   "projects": {
-    "D:\\Workspace\\BackEnd\\ASP.NET\\UserAuthor\\UserAuthor\\UserAuthor.csproj": {
+    "D:\\Workspace\\ASP.NET Core\\Buoi04\\UserAuthor\\UserAuthor\\UserAuthor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Workspace\\BackEnd\\ASP.NET\\UserAuthor\\UserAuthor\\UserAuthor.csproj",
+        "projectUniqueName": "D:\\Workspace\\ASP.NET Core\\Buoi04\\UserAuthor\\UserAuthor\\UserAuthor.csproj",
         "projectName": "UserAuthor",
-        "projectPath": "D:\\Workspace\\BackEnd\\ASP.NET\\UserAuthor\\UserAuthor\\UserAuthor.csproj",
+        "projectPath": "D:\\Workspace\\ASP.NET Core\\Buoi04\\UserAuthor\\UserAuthor\\UserAuthor.csproj",
         "packagesPath": "C:\\Users\\M15 A\\.nuget\\packages\\",
-        "outputPath": "D:\\Workspace\\BackEnd\\ASP.NET\\UserAuthor\\UserAuthor\\obj\\",
+        "outputPath": "D:\\Workspace\\ASP.NET Core\\Buoi04\\UserAuthor\\UserAuthor\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
