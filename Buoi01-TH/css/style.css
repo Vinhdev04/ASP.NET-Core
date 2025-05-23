@@ -231,6 +231,22 @@ nav.navbar {
   margin: 0;
 }
 
+.price-text {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.price-text .new-price {
+  color: #4a90e2;
+  font-weight: 700;
+}
+
+.price-text .old-price {
+  text-decoration: line-through;
+  color: #999;
+}
+
 /* Contact  */
 .contact-bg {
   background: linear-gradient(
