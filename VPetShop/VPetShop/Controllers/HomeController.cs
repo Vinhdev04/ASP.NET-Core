@@ -1,21 +1,28 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using VPetShop.Models;
+using VPetShop.Data;
 
 namespace VPetShop.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IProductRepository _productRepository;
+        private readonly ICategoryRepository _categoryRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IProductRepository productRepository, ICategoryRepository categoryRepository)
         {
-            _logger = logger;
+            _productRepository = productRepository;
+            _categoryRepository = categoryRepository;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var products = _productRepository.GetAll();
+            foreach (var product in products)
+            {
+                product.Category = _categoryRepository.GetById(product.CategoryId);
+            }
+            return View(products);
         }
 
         public IActionResult About()
@@ -26,26 +33,6 @@ namespace VPetShop.Controllers
         public IActionResult Contact()
         {
             return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Contact(ContactForm model)
-        {
-            if (ModelState.IsValid)
-            {
-                // Xử lý form liên hệ (có thể gửi email hoặc lưu vào DB)
-                // Hiện tại chỉ redirect về trang chính với thông báo thành công
-                TempData["Message"] = "Tin nhắn của bạn đã được gửi thành công!";
-                return RedirectToAction("Index");
-            }
-            return View(model);
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

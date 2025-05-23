@@ -1,0 +1,175 @@
+@model IEnumerable<VPetShop.Models.Product>
+@using Newtonsoft.Json
+
+@{
+    ViewData["Title"] = "Sản Phẩm";
+    var dogs = Model?.Where(p => p.CategoryId == 1).ToList() ?? new List<VPetShop.Models.Product>();
+    var cats = Model?.Where(p => p.CategoryId == 2).ToList() ?? new List<VPetShop.Models.Product>();
+    var allProducts = Model?.ToList() ?? new List<VPetShop.Models.Product>();
+}
+
+<main>
+    <section class="products-bg">
+        <div class="container">
+            <h2 class="text-center logo-font mb-4 animate__animated animate__bounceIn">Danh Sách Chức Năng</h2>
+            <div class="text-center mb-5 animate__animated animate__fadeIn py-3 border-bottom">
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <a asp-action="Add" asp-controller="Product" class="btn btn-primary animate__animated animate__pulse">Thêm Mới</a>
+                    <select id="productSelect" class="form-select" style="max-width: 200px;">
+                        <option value="">Chọn sản phẩm...</option>
+                        @foreach (var product in allProducts)
+                        {
+                            <option value="@product.Id" data-name="@product.Name" data-image="@product.ImagePath" data-new-price="@product.NewPrice.ToString("C0", new System.Globalization.CultureInfo("en-US"))" data-old-price="@product.OldPrice.ToString("C0", new System.Globalization.CultureInfo("en-US"))" data-description="@product.Description" data-details='@Html.Raw(JsonConvert.SerializeObject(product.Details))'>@product.Name</option>
+                        }
+                    </select>
+                    <a id="displayBtn" class="btn btn-secondary animate__animated animate__pulse" href="#" disabled>Hiển Thị</a>
+                    <a id="updateBtn" class="btn btn-warning animate__animated animate__pulse" href="#" disabled>Sửa</a>
+                    <a id="deleteBtn" class="btn btn-danger animate__animated animate__pulse" href="#" disabled>Xóa</a>
+                </div>
+            </div>
+
+            <h3 class="animate__animated animate__fadeIn logo-font mb-4 animate__animated animate__bounceIn py-2 border-bottom">Chó Cảnh</h3>
+            <div class="row">
+                @foreach (var product in dogs)
+                {
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                        <div class="card product-card animate__animated animate__fadeInUp" style="cursor: pointer;" data-name="@product.Name" data-image="@product.ImagePath" data-new-price="@product.NewPrice.ToString("C0", new System.Globalization.CultureInfo("en-US"))" data-old-price="@product.OldPrice.ToString("C0", new System.Globalization.CultureInfo("en-US"))" data-description="@product.Description" data-details='@Html.Raw(JsonConvert.SerializeObject(product.Details))'>
+                            <img src="@(string.IsNullOrEmpty(product.ImagePath) ? "/images/default.jpg" : product.ImagePath)" class="card-img-top img-thumbnail" alt="@product.Name" onerror="this.src='/images/default.jpg';" />
+                            <div class="card-body">
+                                <h5 class="card-title">@product.Name</h5>
+                                <p class="price-text">
+                                    Giá mới: <span class="new-price">@product.NewPrice.ToString("C0", new System.Globalization.CultureInfo("en-US"))</span>
+                                    <span class="old-price">@product.OldPrice.ToString("C0", new System.Globalization.CultureInfo("en-US"))</span>
+                                </p>
+                                <p class="card-description text-truncate">@product.Description</p>
+                                <p><strong>Danh mục:</strong> @(product.Category?.Name ?? "Không xác định")</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <h3 class="animate__animated animate__fadeIn logo-font mb-4 animate__animated animate__bounceIn py-2 border-bottom">Mèo Cảnh</h3>
+            <div class="row">
+                @foreach (var product in cats)
+                {
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                        <div class="card product-card animate__animated animate__fadeInUp" style="cursor: pointer;" data-name="@product.Name" data-image="@product.ImagePath" data-new-price="@product.NewPrice.ToString("C0", new System.Globalization.CultureInfo("en-US"))" data-old-price="@product.OldPrice.ToString("C0", new System.Globalization.CultureInfo("en-US"))" data-description="@product.Description" data-details='@Html.Raw(JsonConvert.SerializeObject(product.Details))'>
+                            <img src="@(string.IsNullOrEmpty(product.ImagePath) ? "/images/default.jpg" : product.ImagePath)" class="card-img-top img-thumbnail" alt="@product.Name" onerror="this.src='/images/default.jpg';" />
+                            <div class="card-body">
+                                <h5 class="card-title">@product.Name</h5>
+                                <p class="price-text">
+                                    Giá mới: <span class="new-price">@product.NewPrice.ToString("C0", new System.Globalization.CultureInfo("en-US"))</span>
+                                    <span class="old-price">@product.OldPrice.ToString("C0", new System.Globalization.CultureInfo("en-US"))</span>
+                                </p>
+                                <p class="card-description text-truncate">@product.Description</p>
+                                <p><strong>Danh mục:</strong> @(product.Category?.Name ?? "Không xác định")</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</main>
+
+@section Scripts {
+    <script>
+        // Handle card click to open modal
+        document.querySelectorAll(".product-card").forEach((card) => {
+            card.addEventListener("click", function () {
+                console.log("Card clicked:", this.dataset.name);
+                const modal = document.getElementById("productModal");
+                if (!modal) {
+                    console.error("Modal not found");
+                    return;
+                }
+
+                modal.querySelector(".modal-title").textContent = this.dataset.name || "N/A";
+                modal.querySelector(".modal-image").src = this.dataset.image || "/images/default.jpg";
+                modal.querySelector(".modal-image").alt = `Hình ảnh ${this.dataset.name || "N/A"}`;
+                modal.querySelector(".new-price").textContent = this.dataset.newPrice || "N/A";
+                modal.querySelector(".old-price").textContent = this.dataset.oldPrice || "N/A";
+                modal.querySelector(".modal-description").textContent = this.dataset.description || "N/A";
+
+                try {
+                    const details = JSON.parse(this.dataset.details || "{}");
+                    console.log("Parsed details:", details);
+                    modal.querySelector(".modal-origin").textContent = details.origin || "N/A";
+                    modal.querySelector(".modal-weight").textContent = details.weight || "N/A";
+                    modal.querySelector(".modal-temperament").textContent = details.temperament || "N/A";
+                    modal.querySelector(".modal-health").textContent = details.health || "N/A";
+                } catch (e) {
+                    console.error("Error parsing details:", e);
+                    modal.querySelector(".modal-origin").textContent = "N/A";
+                    modal.querySelector(".modal-weight").textContent = "N/A";
+                    modal.querySelector(".modal-temperament").textContent = "N/A";
+                    modal.querySelector(".modal-health").textContent = "N/A";
+                }
+
+                modal.querySelector(".modal-buy-now").href = "#";
+                new bootstrap.Modal(modal).show();
+            });
+        });
+
+        // Handle product selection for CRUD actions
+        const productSelect = document.getElementById("productSelect");
+        const displayBtn = document.getElementById("displayBtn");
+        const updateBtn = document.getElementById("updateBtn");
+        const deleteBtn = document.getElementById("deleteBtn");
+
+        productSelect.addEventListener("change", function () {
+            const productId = this.value;
+            const selectedOption = this.options[this.selectedIndex];
+            console.log("Selected product ID:", productId, "Name:", selectedOption.dataset.name);
+
+            // Enable/disable buttons based on selection
+            const isSelected = productId !== "";
+            displayBtn.disabled = !isSelected;
+            updateBtn.disabled = !isSelected;
+            deleteBtn.disabled = !isSelected;
+
+            // Update button links using ASP.NET Core routing
+            if (isSelected) {
+                displayBtn.href = `/Product/Display/${productId}`;
+                updateBtn.href = `/Product/Update/${productId}`;
+                deleteBtn.href = `/Product/Delete/${productId}`;
+                console.log("Updated hrefs:", {
+                    display: displayBtn.href,
+                    update: updateBtn.href,
+                    delete: deleteBtn.href
+                });
+            } else {
+                displayBtn.href = "#";
+                updateBtn.href = "#";
+                deleteBtn.href = "#";
+            }
+        });
+
+        // Add click handlers to navigate when buttons are enabled
+        displayBtn.addEventListener("click", function (e) {
+            e.preventDefault(); // Prevent default anchor behavior
+            if (!this.disabled && this.href !== "#") {
+                console.log("Navigating to:", this.href);
+                window.location.href = this.href;
+            }
+        });
+
+        updateBtn.addEventListener("click", function (e) {
+            e.preventDefault(); // Prevent default anchor behavior
+            if (!this.disabled && this.href !== "#") {
+                console.log("Navigating to:", this.href);
+                window.location.href = this.href;
+            }
+        });
+
+        deleteBtn.addEventListener("click", function (e) {
+            e.preventDefault(); // Prevent default anchor behavior
+            if (!this.disabled && this.href !== "#") {
+                console.log("Navigating to:", this.href);
+                window.location.href = this.href;
+            }
+        });
+    </script>
+    <script src="/js/script.js"></script>
+}

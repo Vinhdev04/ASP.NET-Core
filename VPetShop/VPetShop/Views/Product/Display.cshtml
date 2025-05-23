@@ -1,0 +1,76 @@
+@model VPetShop.Models.Product
+
+@{
+    ViewData["Title"] = "Chi Tiết Sản Phẩm";
+}
+
+<main>
+    <section class="products-bg py-5" style="background: linear-gradient(to bottom, #4a90e2, #63b8ff, #a3d8f4) !important;">
+        <div class="container">
+            <h2 class="text-center logo-font mb-5 animate__animated animate__zoomIn" style="color: #ffffff; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);">
+                Chi Tiết Sản Phẩm
+            </h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card shadow-lg border-0 animate__animated animate__fadeInUp" style="border-radius: 15px; background: rgba(255, 255, 255, 0.9);">
+                        <div class="card-body p-5">
+                            <div class="row">
+                                <div class="col-md-6 mb-4 mb-md-0">
+                                    <img src="@(string.IsNullOrEmpty(Model.ImagePath) ? "/images/default.jpg" : Model.ImagePath)" class="img-fluid rounded-3 shadow-sm animate__animated animate__fadeInLeft" alt="@Model.Name" style="max-height: 400px; object-fit: cover; width: 100%;" onerror="this.src='/images/default.jpg';" />
+                                </div>
+                                <div class="col-md-6 animate__animated animate__fadeInRight">
+                                    <h3 class="fw-bold mb-3" style="color: #ffffff;">@Model.Name</h3>
+                                    <p class="mb-2"><strong style="color: #1e3a8a;">Giá mới:</strong> <span class="new-price">@Model.NewPrice.ToString("C0", new System.Globalization.CultureInfo("en-US"))</span></p>
+                                    <p class="mb-2"><strong style="color: #1e3a8a;">Giá cũ:</strong> <span class="old-price">@Model.OldPrice.ToString("C0", new System.Globalization.CultureInfo("en-US"))</span></p>
+                                    <p class="mb-2"><strong style="color: #1e3a8a;">Mô tả:</strong> @Model.Description</p>
+                                    <p class="mb-4"><strong style="color: #1e3a8a;">Danh mục:</strong> @(Model.Category?.Name ?? "Không xác định")</p>
+                                    <div class="p-4 rounded-3 shadow-sm mb-4" style="background: rgba(163, 216, 244, 0.3);">
+                                        <h4 class="fw-bold mb-3" style="color: #ffffff;">Chi Tiết</h4>
+                                        <p class="mb-2"><strong style="color: #1e3a8a;">Nguồn gốc:</strong> @(Model.Details?.Origin ?? "N/A")</p>
+                                        <p class="mb-2"><strong style="color: #1e3a8a;">Cân nặng:</strong> @(Model.Details?.Weight ?? "N/A")</p>
+                                        <p class="mb-2"><strong style="color: #1e3a8a;">Tính cách:</strong> @(Model.Details?.Temperament ?? "N/A")</p>
+                                        <p class="mb-0"><strong style="color: #1e3a8a;">Sức khỏe:</strong> @(Model.Details?.Health ?? "N/A")</p>
+                                    </div>
+                                    <div class="d-flex gap-3 justify-content-center flex-wrap">
+                                        <a asp-action="Update" asp-route-id="@Model.Id" class="btn btn-primary btn-lg animate__animated animate__pulse animate__infinite" style="padding: 12px 30px; border-radius: 8px; background-color: #63b8ff; color: #1e3a8a; border: none;">
+                                            Sửa
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger btn-lg" style="padding: 12px 30px; border-radius: 8px; background-color: #a3d8f4; color: #ffffff; transition: transform 0.3s ease;">
+                                            Xóa
+                                        </a>
+                                        <a asp-action="Index" class="btn btn-secondary btn-lg" style="padding: 12px 30px; border-radius: 8px; background-color: #a3d8f4; color: #ffffff; transition: transform 0.3s ease;">
+                                            Quay Lại
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+@section Scripts {
+    <script>
+        // Add hover effects for buttons
+        document.querySelectorAll('.btn-primary, .btn-danger, .btn-secondary').forEach(button => {
+            button.addEventListener('mouseover', function () {
+                this.style.transform = 'scale(1.05)';
+            });
+            button.addEventListener('mouseout', function () {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Add hover effect for the image
+        const productImage = document.querySelector('.img-fluid');
+        productImage.addEventListener('mouseover', function () {
+            this.style.transform = 'scale(1.03)';
+        });
+        productImage.addEventListener('mouseout', function () {
+            this.style.transform = 'scale(1)';
+        });
+    </script>
+}

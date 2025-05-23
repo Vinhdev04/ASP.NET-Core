@@ -1,0 +1,121 @@
+@model VPetShop.Models.Product
+
+@{
+    ViewData["Title"] = "Cập Nhật Sản Phẩm";
+}
+
+<main>
+    <section class="products-bg py-5" style="background: linear-gradient(to bottom, #4a90e2, #63b8ff, #a3d8f4) !important;">
+        <div class="container">
+            <h2 class="text-center logo-font mb-5 animate__animated animate__zoomIn" style="color: #ffffff; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);">
+                Cập Nhật Sản Phẩm
+            </h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10">
+                    <div class="card shadow-lg border-0 animate__animated animate__fadeInUp" style="border-radius: 15px; background: rgba(255, 255, 255, 0.9);">
+                        <div class="card-body p-5">
+                            <form asp-action="Update" method="post">
+                                <input type="hidden" asp-for="Id" />
+                                <!-- Product Details -->
+                                <div class="mb-4">
+                                    <label asp-for="Name" class="form-label fw-bold" style="color: #1e3a8a;">Tên Sản Phẩm</label>
+                                    <input asp-for="Name" class="form-control form-control-lg rounded-3 shadow-sm" placeholder="Nhập tên sản phẩm" style="border-color: #63b8ff;" />
+                                    <span asp-validation-for="Name" class="text-danger mt-2 d-block"></span>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <label asp-for="NewPrice" class="form-label fw-bold" style="color: #1e3a8a;">Giá Mới</label>
+                                        <input asp-for="NewPrice" class="form-control form-control-lg rounded-3 shadow-sm" placeholder="Nhập giá mới" style="border-color: #63b8ff;" />
+                                        <span asp-validation-for="NewPrice" class="text-danger mt-2 d-block"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label asp-for="OldPrice" class="form-label fw-bold" style="color: #1e3a8a;">Giá Cũ</label>
+                                        <input asp-for="OldPrice" class="form-control form-control-lg rounded-3 shadow-sm" placeholder="Nhập giá cũ" style="border-color: #63b8ff;" />
+                                        <span asp-validation-for="OldPrice" class="text-danger mt-2 d-block"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label asp-for="Description" class="form-label fw-bold" style="color: #1e3a8a;">Mô Tả</label>
+                                    <textarea asp-for="Description" class="form-control form-control-lg rounded-3 shadow-sm" rows="4" placeholder="Nhập mô tả sản phẩm" style="border-color: #63b8ff;"></textarea>
+                                    <span asp-validation-for="Description" class="text-danger mt-2 d-block"></span>
+                                </div>
+                                <div class="mb-4">
+                                    <label asp-for="ImagePath" class="form-label fw-bold" style="color: #1e3a8a;">Đường Dẫn Hình Ảnh</label>
+                                    <input asp-for="ImagePath" class="form-control form-control-lg rounded-3 shadow-sm" placeholder="Nhập đường dẫn hình ảnh" style="border-color: #63b8ff;" />
+                                    <span asp-validation-for="ImagePath" class="text-danger mt-2 d-block"></span>
+                                </div>
+                                <div class="mb-4">
+                                    <label asp-for="CategoryId" class="form-label fw-bold" style="color: #1e3a8a;">Danh Mục</label>
+                                    <select asp-for="CategoryId" class="form-select form-select-lg rounded-3 shadow-sm" asp-items="@(new SelectList(ViewBag.Categories, "Id", "Name"))" style="border-color: #63b8ff;">
+                                        <option value="">Chọn danh mục</option>
+                                    </select>
+                                    <span asp-validation-for="CategoryId" class="text-danger mt-2 d-block"></span>
+                                </div>
+                                <!-- Product Details Section -->
+                                <div class="mb-4 p-4 rounded-3 shadow-sm" style="background: rgba(163, 216, 244, 0.3);">
+                                    <h4 class="fw-bold mb-4" style="color: #ffffff;">Chi Tiết Sản Phẩm</h4>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label asp-for="Details.Origin" class="form-label fw-bold" style="color: #1e3a8a;">Nguồn Gốc</label>
+                                            <input asp-for="Details.Origin" class="form-control rounded-3 shadow-sm" placeholder="Nhập nguồn gốc" style="border-color: #63b8ff;" />
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label asp-for="Details.Weight" class="form-label fw-bold" style="color: #1e3a8a;">Cân Nặng</label>
+                                            <input asp-for="Details.Weight" class="form-control rounded-3 shadow-sm" placeholder="Nhập cân nặng" style="border-color: #63b8ff;" />
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label asp-for="Details.Temperament" class="form-label fw-bold" style="color: #1e3a8a;">Tính Cách</label>
+                                            <input asp-for="Details.Temperament" class="form-control rounded-3 shadow-sm" placeholder="Nhập tính cách" style="border-color: #63b8ff;" />
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label asp-for="Details.Health" class="form-label fw-bold" style="color: #1e3a8a;">Sức Khỏe</label>
+                                            <input asp-for="Details.Health" class="form-control rounded-3 shadow-sm" placeholder="Nhập tình trạng sức khỏe" style="border-color: #63b8ff;" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Buttons -->
+                                <div class="d-flex gap-3 justify-content-center">
+                                    <button type="submit" class="btn btn-primary btn-lg animate__animated animate__pulse animate__infinite" style="padding: 12px 30px; border-radius: 8px; background-color: #63b8ff; color: #1e3a8a; border: none;">
+                                        Cập Nhật
+                                    </button>
+                                    <a asp-action="Index" class="btn btn-secondary btn-lg" style="padding: 12px 30px; border-radius: 8px; background-color: #a3d8f4; color: #ffffff; transition: transform 0.3s ease;">
+                                        Quay Lại
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/script.js"></script>
+    <script>
+        // Add hover effect for the "Quay Lại" button
+        document.querySelector('a.btn-secondary').addEventListener('mouseover', function () {
+            this.style.transform = 'scale(1.05)';
+        });
+        document.querySelector('a.btn-secondary').addEventListener('mouseout', function () {
+            this.style.transform = 'scale(1)';
+        });
+
+        // Add focus effect for form inputs
+        document.querySelectorAll('.form-control, .form-select').forEach(input => {
+            input.addEventListener('focus', function () {
+                this.style.boxShadow = '0 0 10px rgba(99, 184, 255, 0.5)';
+                this.style.borderColor = '#4a90e2';
+            });
+            input.addEventListener('blur', function () {
+                this.style.boxShadow = 'none';
+                this.style.borderColor = '#63b8ff';
+            });
+        });
+    </script>
+}
