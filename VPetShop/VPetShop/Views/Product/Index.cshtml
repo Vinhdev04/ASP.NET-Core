@@ -2,7 +2,7 @@
 @using Newtonsoft.Json
 
 @{
-    ViewData["Title"] = "Trang Chủ";
+    ViewData["Title"] = "Sản Phẩm";
     var dogs = Model?.Where(p => p.CategoryId == 1).Take(6).ToList() ?? new List<VPetShop.Models.Product>();
     var cats = Model?.Where(p => p.CategoryId == 2).Take(6).ToList() ?? new List<VPetShop.Models.Product>();
 }
@@ -79,34 +79,34 @@
             </ul>
         </nav>
     </section>
-
-    <section>
-        <h2 class="text-center logo-font mb-4">Theo Dõi Chúng Tôi</h2>
-        <div class="d-flex justify-content-center gap-3">
-            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-        </div>
-    </section>
 </main>
 
 @section Scripts {
     <script>
-        document.querySelectorAll(".view-details").forEach((button) => {
+                document.querySelectorAll(".view-details").forEach((button) => {
             button.addEventListener("click", function () {
                 const card = this.closest(".card");
+                if (!card) return; // Safety check
                 const modal = document.getElementById("productModal");
-                modal.querySelector(".modal-title").textContent = card.dataset.name;
-                modal.querySelector(".modal-image").src = card.dataset.image;
-                modal.querySelector(".modal-image").alt = `Hình ảnh ${card.dataset.name}`;
-                modal.querySelector(".new-price").textContent = card.dataset.newPrice;
-                modal.querySelector(".old-price").textContent = card.dataset.oldPrice;
-                modal.querySelector(".modal-description").textContent = card.dataset.description;
-                const details = JSON.parse(card.dataset.details);
-                modal.querySelector(".modal-origin").textContent = details.origin;
-                modal.querySelector(".modal-weight").textContent = details.weight;
-                modal.querySelector(".modal-temperament").textContent = details.temperament;
-                modal.querySelector(".modal-health").textContent = details.health;
+                if (!modal) return; // Safety check
+
+                modal.querySelector(".modal-title").textContent = card.dataset.name || "N/A";
+                modal.querySelector(".modal-image").src = card.dataset.image || "";
+                modal.querySelector(".modal-image").alt = `Hình ảnh ${card.dataset.name || "N/A"}`;
+                modal.querySelector(".new-price").textContent = card.dataset.newPrice || "N/A";
+                modal.querySelector(".old-price").textContent = card.dataset.oldPrice || "N/A";
+                modal.querySelector(".modal-description").textContent = card.dataset.description || "N/A";
+
+                try {
+                    const details = JSON.parse(card.dataset.details || "{}");
+                    modal.querySelector(".modal-origin").textContent = details.origin || "N/A";
+                    modal.querySelector(".modal-weight").textContent = details.weight || "N/A";
+                    modal.querySelector(".modal-temperament").textContent = details.temperament || "N/A";
+                    modal.querySelector(".modal-health").textContent = details.health || "N/A";
+                } catch (e) {
+                    console.error("Error parsing details:", e);
+                }
+
                 modal.querySelector(".modal-buy-now").href = "#";
             });
         });

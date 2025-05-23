@@ -21,6 +21,8 @@ wwwroot\images\poodle-4.jfif
 wwwroot\images\poodle-5.webp
 wwwroot\images\poodle-6.jfif
 wwwroot\images\shiba.jpg
+wwwroot\js\script.js
+wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
@@ -78,5 +80,3 @@ wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
-wwwroot\js\script.js
-wwwroot\js\site.js

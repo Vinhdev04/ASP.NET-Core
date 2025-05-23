@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace VPetShop.Views.Pet
+namespace VPetShop.Views.Product
 {
     public class IndexModel : PageModel
     {
