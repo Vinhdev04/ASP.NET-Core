@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CloneTemplate")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ad9a59f1ab87f6a864111985df05e55754d3bfdf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c99d668f9025826cabe2858cbc0757adb19c9e63")]
 [assembly: System.Reflection.AssemblyProductAttribute("CloneTemplate")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CloneTemplate")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
